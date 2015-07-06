@@ -1,0 +1,381 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Timeline</title>
+        <meta name="description" content="Because I started losing track of what happened to all of us...">
+        <link href="vis/vis.min.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">
+            body, html {
+              font-family: sans-serif;
+            }
+            #key p {
+                position: inherit;
+                margin: 0 0 10px;
+            }
+            .vis.timeline .item.eyemagine {
+                background: #faa61a;
+                border: black solid 1px;
+            }
+            .vis.timeline .item.guidance {
+                background: grey;
+                border: 1px solid black;
+                color: white;
+            }
+            .vis.timeline .item.submodal {
+                background: #e24b37;
+                border: 1px solid black;
+            }
+            .vis.timeline .item.separation {
+                background: #98ca3c;
+                border: 1px solid black;
+                color: white;
+            }
+            .vis.timeline .item.teefury {
+                background: #00b9bd;
+                border: 1px solid black;
+            }
+            .vis.timeline .item.kering {
+                background: white;
+                border: black solid 1px;
+            }
+            .vis.timeline .item.zther {
+                background: #fbe809;
+                border: black solid 1px;
+            }
+            .vis.timeline .item.hide {
+                opacity: 0.3;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="key" class="vis timeline">
+            <p class="item range eyemagine">Eyemagine Technology, LLC.</p>
+            <p class="item range guidance">Guidance Solutions, Inc.</p>
+            <p class="item range kering">Kering</p>
+            <p class="item range submodal">Submodal</p>
+            <p class="item range separation">Separation Degrees Media, Inc.</p>
+            <p class="item range teefury">Tee Fury, LLC.</p>
+            <p class="item range zther">Zther Interactive</p>
+        </div>
+        <div id="visualization"></div>
+        <p>Click on the timeline above to enable zoom and drag-and-drop features</p>
+        <script src="vis/vis.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script>
+            var container = document.getElementById('visualization'),
+                groups = new vis.DataSet(),
+                items = new vis.DataSet(),
+                current = Date.now(),
+                groupId = -1;
+
+            // Akili
+            groups.add({id: ++groupId, content: 'Akili Wachspress'});
+            items.add({
+              group: groupId,
+              content: 'Software Developer',
+              start: '2012-07-01',
+              end: '2013-11-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Web Developer',
+              start: '2013-11-15',
+              end: '2015-04-03',
+              className: 'zther'
+            });
+            items.add({
+              group: groupId,
+              content: 'Magento Developer',
+              start: '2015-04-06',
+              end: current,
+              className: 'kering'
+            });
+
+            // Alessandro
+            groups.add({id: ++groupId, content: 'Alessandro Bassi'});
+            items.add({
+              group: groupId,
+              content: 'Web Developer',
+              start: '2013-06-01',
+              end: '2014-04-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Ecommerce Web Developer',
+              start: '2014-04-15',
+              end: '2014-11-01',
+              className: 'kering'
+            });
+            items.add({
+              group: groupId,
+              content: 'Senior Magento Developer',
+              start: '2014-11-15',
+              end: current,
+              className: 'separation'
+            });
+
+            // Chris
+            groups.add({id: ++groupId, content: 'Chris Manger'});
+            items.add({
+              group: groupId,
+              content: 'Magento Programmer',
+              start: '2013-9-01',
+              end: '2014-10-01',
+              className: 'guidance'
+            });
+            items.add({
+              group: groupId,
+              content: 'Magento Developer',
+              start: '2015-02-01',
+              end: current,
+              className: 'zther'
+            });
+
+            // Donna
+            groups.add({id: ++groupId, content: 'Donna Simoneau'});
+            items.add({
+              group: groupId,
+              content: 'Director of Production',
+              start: '2012-10-01',
+              end: '2014-01-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Project Manager',
+              start: '2014-02-01',
+              end: current,
+              className: 'guidance'
+            });
+
+            // Eddie
+            groups.add({id: ++groupId, content: 'Eddie Kang'});
+            items.add({
+              group: groupId,
+              content: 'Magento Frontend Developer',
+              start: '2014-06-01',
+              end: '2014-10-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Web Development',
+              start: '2014-10-15',
+              end: '2015-03-15',
+              className: 'zther'
+            });
+            items.add({
+              group: groupId,
+              content: 'Lead magento frontend developer',
+              start: '2015-04-01',
+              end: current,
+              className: 'teefury'
+            });
+
+            // Evan
+            groups.add({id: ++groupId, content: 'Evan Zhou'});
+            items.add({
+              group: groupId,
+              content: 'Software Developer',
+              start: '2011-03-01',
+              end: '2012-12-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Magento Developer (DCKAP Technologies)',
+              start: '2012-12-15',
+              end: '2013-11-01',
+            });
+            items.add({
+              group: groupId,
+              content: 'PHP Architect',
+              start: '2013-11-15',
+              end: current,
+              className: 'teefury'
+            });
+
+            // Juito
+            groups.add({id: ++groupId, content: 'Juito Hartanto'});
+            items.add({
+              group: groupId,
+              content: 'Web Developer',
+              start: '2013-09-01',
+              end: '2014-10-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Lead Magento Developer',
+              start: '2014-10-15',
+              end: current,
+              className: 'separation'
+            });
+
+            // Matisse
+            groups.add({id: ++groupId, content: 'Matisse Laurel'});
+            items.add({
+              group: groupId,
+              content: 'Web Developer',
+              start: '2012-07-01',
+              end: '2013-10-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Software Engineer',
+              start: '2013-10-15',
+              end: '2014-11-01',
+              className: 'teefury'
+            });
+            items.add({
+              group: groupId,
+              content: 'Web Developer (Traffik)',
+              start: '2014-12-01',
+              end: '2014-12-15'
+            });
+            items.add({
+              group: groupId,
+              content: 'Web Developer (Nature\'s Best Powered by KeHE)',
+              start: '2015-01-01',
+              end: current
+            });
+
+            // Steve
+            groups.add({id: ++groupId, content: 'Steve Robbins'});
+            items.add({
+              group: groupId,
+              content: 'Lead Software Developer',
+              start: '2012-10-01',
+              end: '2014-09-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Senior PHP Developer',
+              start: '2014-09-15',
+              end: '2014-12-01',
+              className: 'guidance'
+            });
+            items.add({
+              group: groupId,
+              content: 'Senior Magento Developer',
+              start: '2014-12-09',
+              end: '2015-04-02',
+              className: 'kering'
+            });
+            items.add({
+              group: groupId,
+              content: 'Senior Magento Developer',
+              start: '2015-04-06',
+              end: current,
+              className: 'separation'
+            });
+            items.add({
+              group: groupId,
+              content: '<i>Interview</i>',
+              start: '2013-10-28',
+              className: 'zther'
+            });
+            items.add({
+              group: groupId,
+              content: '<i>Interview</i>',
+              start: '2013-11-09',
+              className: 'submodal'
+            });
+            items.add({
+              group: groupId,
+              content: '<i>Interview</i>',
+              start: '2013-11-18',
+              className: 'teefury'
+            });
+
+            // Thi
+            groups.add({id: ++groupId, content: 'Thi Them'});
+            items.add({
+              group: groupId,
+              content: 'Senior Software Developer',
+              start: '2011-06-01',
+              end: '2013-06-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Lead Magento Developer',
+              start: '2013-07-01',
+              end: '2013-12-01',
+              className: 'submodal'
+            });
+            items.add({
+              group: groupId,
+              content: 'Senior Web Developer',
+              start: '2014-01-01',
+              end: current,
+              className: 'teefury'
+            });
+
+            // Youn
+            groups.add({id: ++groupId, content: 'Youn Kim'});
+            items.add({
+              group: groupId,
+              content: 'Magento Developer',
+              start: '2013-10-01',
+              end: '2014-09-01',
+              className: 'eyemagine'
+            });
+            items.add({
+              group: groupId,
+              content: 'Software Engineer (Beauty Counter)',
+              start: '2014-10-01',
+              end: '2014-11-15',
+            });
+            items.add({
+              group: groupId,
+              content: 'Developer',
+              start: '2014-12-01',
+              end: current,
+              className: 'separation'
+            });
+
+            var timeline = new vis.Timeline(container, null, {
+                showCurrentTime: false,
+                clickToUse: true,
+                orientation: 'top',
+                start: current - 1000 * 60 * 60 * 24 * 365 * 1.5,
+                end: current
+            });
+            timeline.setGroups(groups);
+            timeline.setItems(items);
+            
+            $(document).ready(function() {
+                $('.item').hover(function() {
+                    var company = $(this).attr('class')
+                        .replace('item', '')
+                        .replace('box', '')
+                        .replace('range', '')
+                        .trim();
+                    if (company.length) {
+                        $('.item').filter(function() {
+                            return !$(this).hasClass(company);
+                        }).addClass('hide');
+                    }
+                }, function() {
+                    $('.item.hide').removeClass('hide');
+                });
+            });
+        </script>
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-16126282-18']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    </body>
+</html>
